@@ -497,11 +497,19 @@ bool ggml_guid_matches(ggml_guid_t guid_a, ggml_guid_t guid_b) {
 }
 
 const char * ggml_version(void) {
+#ifdef GGML_VERSION
     return GGML_VERSION;
+#else
+    return "0";
+#endif
 }
 
 const char * ggml_commit(void) {
+#ifdef GGML_COMMIT
     return GGML_COMMIT;
+#else
+    return "unknown";
+#endif
 }
 
 //

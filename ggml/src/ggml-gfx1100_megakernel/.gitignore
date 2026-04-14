@@ -1,0 +1,17 @@
+# Build artifacts
+*.hsaco
+*.o
+*.obj
+
+# Benchmark data (large binary files)
+benchmarks/golden-baseline-*.bin
+benchmarks/rocwmma/
+benchmarks/fusion3/
+benchmarks/nwarps8/
+
+# Test logs
+models/
+*.log
+
+# Cache
+.cache/

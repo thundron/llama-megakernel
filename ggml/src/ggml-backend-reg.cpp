@@ -86,6 +86,10 @@
 #include "ggml-openvino.h"
 #endif
 
+#ifdef GGML_USE_GFX1100_MEGAKERNEL
+#include "ggml-gfx1100_megakernel/gfx1100-megakernel.h"
+#endif
+
 namespace fs = std::filesystem;
 
 static std::string path_str(const fs::path & path) {
@@ -160,6 +164,9 @@ struct ggml_backend_registry {
 #endif
 #ifdef GGML_USE_OPENVINO
         register_backend(ggml_backend_openvino_reg());
+#endif
+#ifdef GGML_USE_GFX1100_MEGAKERNEL
+        register_backend(ggml_backend_gfx1100_megakernel_reg());
 #endif
 #ifdef GGML_USE_CPU
         register_backend(ggml_backend_cpu_reg());

@@ -221,8 +221,9 @@ set_property(CACHE GGML_CUDA_COMPRESSION_MODE PROPERTY STRINGS "none;speed;balan
 option(GGML_HIP                             "ggml: use HIP"                                   OFF)
 option(GGML_HIP_GRAPHS                      "ggml: use HIP graph, experimental, slow"         OFF)
 option(GGML_HIP_RCCL                        "ggml: use ROCm Collective Comm. Library"         OFF)
+option(GGML_GFX1100_MEGAKERNEL              "ggml: fused megakernels for gfx1100 (7900 XTX)"  OFF)
 option(GGML_HIP_NO_VMM                      "ggml: do not try to use HIP VMM"                 ON)
-option(GGML_HIP_ROCWMMA_FATTN               "ggml: enable rocWMMA for FlashAttention"         OFF)
+option(GGML_HIP_ROCWMMA_FATTN               "ggml: enable rocWMMA for FlashAttention"         ON)
 option(GGML_HIP_MMQ_MFMA                    "ggml: enable MFMA MMA for CDNA in MMQ"           ON)
 option(GGML_HIP_EXPORT_METRICS              "ggml: enable kernel perf metrics output"         OFF)
 option(GGML_MUSA_GRAPHS                     "ggml: use MUSA graph, experimental, unstable"    OFF)
@@ -410,10 +411,13 @@ write_basic_package_version_file(
     VERSION ${GGML_INSTALL_VERSION}
     COMPATIBILITY SameMajorVersion)
 
-target_compile_definitions(ggml-base PRIVATE
-    GGML_VERSION="${GGML_INSTALL_VERSION}"
-    GGML_COMMIT="${GGML_BUILD_COMMIT}"
+# Generate version header (avoids quoting issues with hipcc on Windows)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/ggml-version-info.h"
+    "#pragma once\n"
+    "#define GGML_VERSION \"${GGML_INSTALL_VERSION}\"\n"
+    "#define GGML_COMMIT \"${GGML_BUILD_COMMIT}\"\n"
 )
+target_include_directories(ggml-base PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
 message(STATUS "ggml version: ${GGML_INSTALL_VERSION}")
 message(STATUS "ggml commit:  ${GGML_BUILD_COMMIT}")
 

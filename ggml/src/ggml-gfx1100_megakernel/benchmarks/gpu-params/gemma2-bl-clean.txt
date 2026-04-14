@@ -1,0 +1,6 @@
+HIP Library Path: C:\WINDOWS\SYSTEM32\amdhip64_7.dll
+| model                          |       size |     params | backend    | ngl |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | --------------: | -------------------: |
+| gemma2 2B Q4_K - Medium        |   1.59 GiB |     2.61 B | ROCm,gfx1100-megakernel | 999 |          tg2000 |        157.83 ± 0.99 |
+
+build: 82764d8f4 (8770)

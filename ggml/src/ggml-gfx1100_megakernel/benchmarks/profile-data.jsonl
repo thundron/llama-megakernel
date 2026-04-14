@@ -1,0 +1,84 @@
+{"type":"hardware","gpu":"AMD Radeon RX 7900 XTX","arch":"gfx1100","rdna":"3","vram_mb":24560,"peak_bw_gbs":960,"wave_size":32,"rocm":"7.1"}
+{"type":"model","name":"Llama-3.2-1B-Instruct-Q4_K_M","arch":"llama","arch_id":2,"params_b":1.24,"weight_mb":763,"layers":16,"hidden":2048,"ff":8192,"head_dim":64,"q_heads":32,"kv_heads":8,"rope":"normal","norm":"rms","act":"silu","softcap":false,"post_norms":false,"fused_qkv":false}
+{"type":"model","name":"Qwen2.5-0.5B-Instruct-Q4_K_M","arch":"qwen2","arch_id":25,"params_b":0.63,"weight_mb":463,"layers":24,"hidden":896,"ff":4864,"head_dim":64,"q_heads":14,"kv_heads":2,"rope":"normal","norm":"rms","act":"silu","softcap":false,"post_norms":false,"fused_qkv":false}
+{"type":"model","name":"gemma-2-2b-it-Q4_K_M","arch":"gemma2","arch_id":47,"params_b":2.61,"weight_mb":1594,"layers":26,"hidden":2304,"ff":9216,"head_dim":256,"q_heads":8,"kv_heads":4,"rope":"normal","norm":"rms+add1","act":"gelu_tanh","softcap":true,"attn_softcap":50.0,"logit_softcap":30.0,"post_norms":true,"iswa":true,"fused_qkv":false}
+{"type":"model","name":"Phi-3.5-mini-instruct-Q4_K_M","arch":"phi3","arch_id":36,"params_b":3.82,"weight_mb":2234,"layers":32,"hidden":3072,"ff":8192,"head_dim":96,"q_heads":32,"kv_heads":8,"rope":"neox+su","norm":"rms","act":"silu_fused","softcap":false,"post_norms":false,"fused_qkv":true}
+{"type":"theoretical_max","model":"Llama-3.2-1B","theo_toks":1289,"formula":"960GB/s / 763MB"}
+{"type":"theoretical_max","model":"Qwen2.5-0.5B","theo_toks":2124,"formula":"960GB/s / 463MB"}
+{"type":"theoretical_max","model":"Gemma-2-2B","theo_toks":617,"formula":"960GB/s / 1594MB"}
+{"type":"theoretical_max","model":"Phi-3.5-3.8B","theo_toks":440,"formula":"960GB/s / 2234MB"}
+{"type":"throughput","test":"decode_2000tok","model":"Llama-3.2-1B","baseline_toks":307,"megakernel_toks":396,"speedup":1.29,"bl_efficiency":0.238,"mk_efficiency":0.307}
+{"type":"throughput","test":"decode_2000tok","model":"Qwen2.5-0.5B","baseline_toks":356,"megakernel_toks":400,"speedup":1.12,"bl_efficiency":0.168,"mk_efficiency":0.188}
+{"type":"throughput","test":"decode_2000tok","model":"Gemma-2-2B","baseline_toks":159,"megakernel_toks":150,"speedup":0.95,"bl_efficiency":0.257,"mk_efficiency":0.243}
+{"type":"throughput","test":"decode_2000tok","model":"Phi-3.5-3.8B","baseline_toks":115,"megakernel_toks":151,"speedup":1.31,"bl_efficiency":0.262,"mk_efficiency":0.343}
+{"type":"throughput","test":"prefill_pp512","model":"Llama-3.2-1B","baseline_toks":14567}
+{"type":"throughput","test":"prefill_pp512","model":"Qwen2.5-0.5B","baseline_toks":24155}
+{"type":"throughput","test":"prefill_pp512","model":"Gemma-2-2B","baseline_toks":8682}
+{"type":"throughput","test":"prefill_pp512","model":"Phi-3.5-3.8B","baseline_toks":5175}
+{"type":"correctness","test":"golden_100tok","model":"Llama-3.2-1B","argmax_match":100,"total":100,"max_abs_error":0.82,"status":"PASS"}
+{"type":"correctness","test":"golden_100tok","model":"Qwen2.5-0.5B","argmax_match":100,"total":100,"max_abs_error":1.19,"status":"PASS"}
+{"type":"correctness","test":"golden_100tok","model":"Gemma-2-2B","argmax_match":98,"total":100,"max_abs_error":0.75,"status":"PASS_CLOSE_CALL"}
+{"type":"correctness","test":"golden_100tok","model":"Phi-3.5-3.8B","argmax_match":95,"total":100,"max_abs_error":17.40,"status":"PARTIAL_SU_ROPE_MISSING"}
+{"type":"profile","model":"Llama-3.2-1B","position":2000,"embed_ms":0.00,"norm_ms":0.75,"qkv_proj_ms":0.34,"rope_kv_ms":0.27,"attn_ms":1.16,"o_proj_ms":0.06,"ffn_norm_ms":0.66,"ffn_proj_ms":0.94,"ffn_res_ms":0.08,"lm_head_ms":0.20,"total_ms":4.47}
+{"type":"profile","model":"Qwen2.5-0.5B","position":2000,"embed_ms":0.00,"norm_ms":1.14,"qkv_proj_ms":0.65,"rope_kv_ms":0.22,"attn_ms":1.79,"o_proj_ms":0.05,"ffn_norm_ms":1.15,"ffn_proj_ms":0.50,"ffn_res_ms":0.58,"lm_head_ms":0.20,"total_ms":6.29}
+{"type":"profile","model":"Gemma-2-2B","position":2000,"embed_ms":0.00,"norm_ms":0.91,"qkv_proj_ms":0.71,"rope_kv_ms":0.38,"attn_ms":4.64,"o_proj_ms":0.05,"ffn_norm_ms":0.95,"ffn_proj_ms":1.85,"ffn_res_ms":0.62,"lm_head_ms":0.24,"total_ms":10.36}
+{"type":"profile","model":"Phi-3.5-3.8B","position":2000,"embed_ms":-0.02,"norm_ms":0.95,"qkv_proj_ms":1.47,"rope_kv_ms":0.14,"attn_ms":4.23,"o_proj_ms":0.38,"ffn_norm_ms":0.58,"ffn_proj_ms":2.72,"ffn_res_ms":0.35,"lm_head_ms":0.12,"total_ms":10.93}
+{"type":"vram","model":"Llama-3.2-1B","buffers_mb":218,"total_allocated_mb":1438,"free_after_mb":23121}
+{"type":"vram","model":"Qwen2.5-0.5B","total_allocated_mb":765,"free_after_mb":23794}
+{"type":"vram","model":"Gemma-2-2B","total_allocated_mb":2733,"free_after_mb":21826}
+{"type":"vram","model":"Phi-3.5-3.8B","total_allocated_mb":3527,"free_after_mb":21032}
+{"type":"redundancy","id":1,"name":"rmsnorm 2-pass re-read","impact":"high","affects":"ALL","description":"eval_rmsnorm_q8 reads input twice (pass1: residual+sum, pass2: normalize). Cache in registers for single-pass.","saves_per_layer":"H*4 bytes global read eliminated x2"}
+{"type":"redundancy","id":2,"name":"separate norm + quantize launches","impact":"high","affects":"ALL","description":"launch_norm then eval_quantize_q8 are 2 separate kernels reading H floats. Fuse into 1 kernel.","saves_per_layer":"1 kernel launch + H*4 bytes read+write eliminated x2"}
+{"type":"redundancy","id":3,"name":"MoE re-quantize per expert","impact":"medium","affects":"MoE","description":"norm_out re-quantized to q8_act at start of every expert iteration. Only needed once if down-proj uses separate q8 buffer.","saves_per_layer":"(n_used-1) quantize launches eliminated"}
+{"type":"redundancy","id":4,"name":"MoE first-iteration quantize duplicate","impact":"low","affects":"MoE","description":"Phase 5b already quantized norm_out. MoE loop iteration 0 re-quantizes identically.","saves_per_layer":"1 quantize launch eliminated"}
+{"type":"redundancy","id":5,"name":"MoE hidden memset","impact":"low","affects":"MoE","description":"hipMemsetAsync zeros hidden before accumulation. Could use assignment for first expert instead of += .","saves_per_layer":"1 memset launch eliminated"}
+{"type":"date","timestamp":"2026-04-14T18:30:00Z","commit":"82764d8f4","note":"Pre-optimization reference. All numbers measured before any kernel fusion or fast-math optimizations."}
+{"type":"date","timestamp":"2026-04-14T21:00:00Z","commit":"82764d8f4","note":"Post-optimization round 2: fused GELU, TILE+WMMA kernels, rocWMMA 2.1.0, env var kernel selection."}
+{"type":"throughput","test":"decode_2000tok_rocwmma","model":"Llama-3.2-1B","baseline_toks":303,"megakernel_toks":427,"speedup":1.41,"attn_kernel":"vec"}
+{"type":"throughput","test":"decode_2000tok_rocwmma","model":"Qwen2.5-0.5B","baseline_toks":334,"megakernel_toks":447,"speedup":1.34,"attn_kernel":"vec"}
+{"type":"throughput","test":"decode_2000tok_rocwmma","model":"Gemma-2-2B","baseline_toks":158,"megakernel_toks":152,"speedup":0.96,"attn_kernel":"vec","gap_analysis":"host_dispatch_overhead_312_launches"}
+{"type":"throughput","test":"decode_2000tok_rocwmma","model":"Phi-3.5-3.8B","baseline_toks":117,"megakernel_toks":162,"speedup":1.38,"attn_kernel":"wmma"}
+{"type":"correctness","test":"golden_100tok_v2","model":"Llama-3.2-1B","argmax_match":100,"total":100,"max_abs_error":0.82,"status":"PASS"}
+{"type":"correctness","test":"golden_100tok_v2","model":"Qwen2.5-0.5B","argmax_match":100,"total":100,"max_abs_error":1.23,"status":"PASS"}
+{"type":"correctness","test":"golden_100tok_v2","model":"Gemma-2-2B","argmax_match":100,"total":100,"max_abs_error":0.75,"status":"PASS"}
+{"type":"correctness","test":"golden_100tok_v2","model":"Phi-3.5-3.8B","argmax_match":96,"total":100,"max_abs_error":3.0,"status":"FLOAT_NONASSOC"}
+{"type":"profile","test":"post_opt_v2","model":"Gemma-2-2B","position":2000,"norm_ms":1.19,"qkv_proj_ms":0.82,"rope_kv_ms":0.30,"attn_ms":4.88,"o_proj_ms":0.05,"ffn_norm_ms":1.12,"ffn_proj_ms":1.91,"ffn_res_ms":0.48,"lm_head_ms":0.26,"total_ms":11.01}
+{"type":"profile","test":"post_opt_v2","model":"Llama-3.2-1B","position":2000,"norm_ms":0.58,"qkv_proj_ms":0.52,"rope_kv_ms":0.17,"attn_ms":1.04,"o_proj_ms":0.07,"ffn_norm_ms":0.70,"ffn_proj_ms":0.81,"ffn_res_ms":0.16,"lm_head_ms":0.27,"total_ms":4.28}
+{"type":"bandwidth","model":"Gemma-2-2B","phase":"attention","d":256,"kv_heads":4,"kv_bytes_per_layer_mb":8.0,"total_kv_bytes_mb":208,"theoretical_min_ms":0.217,"actual_ms":4.88,"utilization_pct":4.4}
+{"type":"bandwidth","model":"Llama-3.2-1B","phase":"attention","d":64,"kv_heads":8,"kv_bytes_per_layer_mb":4.0,"total_kv_bytes_mb":64,"theoretical_min_ms":0.067,"actual_ms":1.04,"utilization_pct":6.4}
+{"type":"gap_analysis","model":"Gemma-2-2B","gap_pct":4,"root_cause":"host_dispatch_overhead","launches_per_token":312,"estimated_overhead_ms":0.6,"fix":"plan_system_fusion"}
+{"type":"attn_kernel_comparison","model":"Phi-3.5-3.8B","d":96,"vec_toks":151,"tile_toks":145,"wmma_toks":163,"baseline_toks":117}
+{"type":"launch_count","model":"Gemma-2-2B","before_loop":2,"per_layer":14,"after_loop":4,"total":370,"layers":26}
+{"type":"launch_breakdown","model":"Gemma-2-2B","per_layer":[{"id":1,"kernel":"eval_rmsnorm_q8_quantize","desc":"pre-attn norm+Q8"},{"id":2,"kernel":"eval_matvec_q4k","desc":"Q proj"},{"id":3,"kernel":"eval_matvec_q4k","desc":"K proj"},{"id":4,"kernel":"eval_matvec_q4k","desc":"V proj"},{"id":5,"kernel":"eval_qk_norm_rope_kv_write","desc":"QK norm+RoPE+KV write"},{"id":6,"kernel":"eval_attention_decode","desc":"flash attn VEC"},{"id":7,"kernel":"eval_quantize_q8","desc":"quantize attn_out"},{"id":8,"kernel":"eval_matvec_q4k","desc":"O proj"},{"id":9,"kernel":"eval_rmsnorm_add","desc":"post-attn norm+residual"},{"id":10,"kernel":"eval_rmsnorm_q8_quantize","desc":"pre-FFN norm+Q8"},{"id":11,"kernel":"eval_fused_gate_up_gelu_q4k","desc":"fused gate+up+GELU"},{"id":12,"kernel":"eval_quantize_q8","desc":"quantize mlp_inter"},{"id":13,"kernel":"eval_matvec_q4k","desc":"down proj"},{"id":14,"kernel":"eval_rmsnorm_add","desc":"post-FFN norm+residual"}]}
+{"type":"fusion_opportunity","id":1,"name":"fuse QKV projections","saves_per_layer":2,"total_saves":52,"desc":"Q+K+V read same q8_act, fuse into 1 kernel"}
+{"type":"fusion_opportunity","id":2,"name":"fuse quantize+matvec (O-proj)","saves_per_layer":1,"total_saves":26,"desc":"Q8 quantize + matvec read/write q8_act sequentially"}
+{"type":"fusion_opportunity","id":3,"name":"fuse quantize+matvec (down-proj)","saves_per_layer":1,"total_saves":26,"desc":"same pattern for down projection"}
+{"type":"fusion_opportunity","id":4,"name":"fuse consecutive norms","saves_per_layer":1,"total_saves":25,"desc":"post-norm writes hidden, next pre-norm reads hidden"}
+{"type":"fusion_opportunity","id":5,"name":"fuse embed+scale","saves_total":1,"desc":"bake sqrt(H) into embedding kernel"}
+{"type":"fusion_opportunity","id":6,"name":"fuse final_norm+quantize","saves_total":1,"desc":"same as in-loop fused rmsnorm_q8"}
+{"type":"launch_target","model":"Gemma-2-2B","current":370,"with_all_fusions":238,"reduction_pct":36}
+{"type":"date","timestamp":"2026-04-14T22:30:00Z","note":"Post-optimization round 3: fused QKV + consecutive norms. Quantize+matvec fusion DISABLED (9-16x slower)."}
+{"type":"throughput","test":"decode_2000tok_fusion3","model":"Llama-3.2-1B","baseline_toks":303,"megakernel_toks":438,"speedup":1.45}
+{"type":"throughput","test":"decode_2000tok_fusion3","model":"Qwen2.5-0.5B","baseline_toks":334,"megakernel_toks":456,"speedup":1.37}
+{"type":"throughput","test":"decode_2000tok_fusion3","model":"Gemma-2-2B","baseline_toks":158,"megakernel_toks":152,"speedup":0.96}
+{"type":"throughput","test":"decode_2000tok_fusion3","model":"Phi-3.5-3.8B","baseline_toks":117,"megakernel_toks":161,"speedup":1.38}
+{"type":"fusion_result","name":"fused_qkv","status":"WORKS","improvement_pct":2.6,"model":"Llama-3.2-1B"}
+{"type":"fusion_result","name":"fused_consecutive_norms","status":"WORKS","improvement_pct":70,"desc":"ffn_norm phase 70% faster for Gemma-2 (profile)"}
+{"type":"fusion_result","name":"fused_quantize_matvec","status":"DISABLED","regression":"9-16x slower","cause":"shared_memory_Q8_quantization_overhead"}
+{"type":"launch_count","model":"Gemma-2-2B","test":"fusion3_qkv_norms_only","per_layer":12,"total":316,"note":"14→12 per layer (QKV fused, consecutive norms fused, quantize+matvec DISABLED)"}
+{"type":"experiment","name":"nwarps_8_matvec","status":"REVERTED","reason":"5-8% slower on all models. Baseline's nwarps=8 tuning is optimized for graph-based dispatch, not host-orchestrated. Our nwarps=4 is better for our launch pattern.","llama_before":438,"llama_after":413,"gemma2_before":152,"gemma2_after":150}
+{"type":"date","timestamp":"2026-04-14T23:30:00Z","note":"nwarps=8 experiment reverted. Current best: nwarps=4 + fused QKV + fused consecutive norms + fused gate_up_silu/gelu."}
+{"type":"throughput","test":"decode_2000tok_final","model":"Llama-3.2-1B","megakernel_toks":430,"baseline_toks":303,"speedup":1.42}
+{"type":"throughput","test":"decode_2000tok_final","model":"Gemma-2-2B","megakernel_toks":153,"baseline_toks":158,"speedup":0.96}
+{"type":"date","timestamp":"2026-04-15T01:00:00Z","note":"GPU-resident params v2 implemented. Graph reuse: Llama NaN bug (unfixed), Gemma-2 excluded (SWA). Non-graph path verified correct."}
+{"type":"experiment","name":"graph_reuse_v2","llama_graph":"NaN_bug","gemma2_graph":"disabled_swa","non_graph_unchanged":true}
+{"type":"finding","key":"gemma2_swa_blocks_graph","detail":"Gemma-2 has interleaved SWA which changes KV cache access patterns per layer. hipGraph reuse cannot work because the KV cache window differs per token. The 3.5% gap for Gemma-2 cannot be closed by graph reuse — it is the inherent cost of host dispatch for a SWA model with 26 layers and post-norms."}
+{"type":"throughput","test":"decode_2000tok_current","model":"Llama-3.2-1B","megakernel_toks":430,"baseline_toks":303,"speedup":1.42}
+{"type":"throughput","test":"decode_2000tok_current","model":"Qwen2.5-0.5B","megakernel_toks":456,"baseline_toks":334,"speedup":1.37}
+{"type":"throughput","test":"decode_2000tok_current","model":"Gemma-2-2B","megakernel_toks":152,"baseline_toks":158,"speedup":0.96,"note":"SWA blocks graph reuse. Gap is dispatch overhead, accepted."}
+{"type":"throughput","test":"decode_2000tok_current","model":"Phi-3.5-3.8B","megakernel_toks":161,"baseline_toks":117,"speedup":1.38}
+{"type":"experiment","name":"graph_reuse_v2_fixed","status":"WORKING_BUT_SLOWER","llama_no_graph":430,"llama_graph":424,"qwen_no_graph":456,"qwen_graph":447,"phi_no_graph":161,"phi_graph":160,"note":"hipGraphLaunch on ROCm 7.1 gfx1100 has comparable or slightly worse overhead than direct hipModuleLaunchKernel. AMD graph implementation does not match NVIDIA CUDA graph perf benefit."}
+{"type":"gap_analysis_final","model":"Gemma-2-2B","gap_ms":0.25,"gap_pct_tg2000":3.8,"gap_pct_tg100":12,"root_cause":"fixed_per_token_dispatch_overhead","launches_per_token":312,"estimated_us_per_launch":0.8,"graph_reuse":"not_faster_on_rocm71","swa_blocks_graph":true,"conclusion":"The 3.5% gap is a fixed ~0.25ms per-token host dispatch cost that cannot be eliminated on ROCm 7.1. hipGraph doesn't help. Reducing launch count is the only path, which the plan system would enable. For tg2000, the gap is small (3.8%) because attention dominates. For short sequences it's larger (12% at tg100)."}
+{"type":"experiment","name":"launch_bounds_matvec","status":"NO_EFFECT","gemma2_before":152,"gemma2_after":153,"note":"__launch_bounds__(128,1) on all matvec kernels. No measurable impact on RDNA3 JIT compilation."}
+{"type":"finding","key":"baseline_dispatch_mechanism","detail":"Baseline uses AOT-compiled kernels with <<<>>> syntax (direct call). We use JIT .hsaco + hipModuleLaunchKernel (function pointer). The ~0.3ms fixed overhead is likely from: (1) hipModuleLaunchKernel vs direct <<<>>> dispatch overhead per launch, (2) JIT compiler producing slightly less optimized code than AOT. This is architectural to the JIT approach and cannot be eliminated without switching to AOT compilation."}
+{"type":"finding","key":"baseline_no_graph_gemma2","detail":"Confirmed: baseline does NOT use graph reuse for Gemma-2 (SWA causes pointer changes that reset graph warmup). Both baseline and megakernel use direct per-token kernel launches for Gemma-2."}
